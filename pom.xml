@@ -22,6 +22,7 @@
 
     <properties>
         <mda.version>0.9.2</mda.version>
+        <ukf-mda.version>0.9.4</ukf-mda.version>
         <java-support.version>7.2.0</java-support.version>
         <checkstyle.version>7.6</checkstyle.version>
     </properties>
@@ -41,6 +42,20 @@
                 <enabled>false</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>ukf-release</id>
+            <url>https://apps.iay.org.uk/nexus/content/repositories/ukf</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>ukf-snapshot</id>
+            <url>https://apps.iay.org.uk/nexus/content/repositories/ukf-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -50,10 +65,6 @@
         <dependency>
             <groupId>com.google.code.findbugs</groupId>
             <artifactId>jsr305</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
         </dependency>
         <dependency>
             <groupId>net.shibboleth.metadata</groupId>
@@ -73,13 +84,10 @@
         <!-- Test dependencies -->
 
         <dependency>
-            <groupId>${spring.groupId}</groupId>
-            <artifactId>spring-context</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>${spring.groupId}</groupId>
-            <artifactId>spring-test</artifactId>
+            <groupId>uk.org.ukfederation</groupId>
+            <artifactId>ukf-mda</artifactId>
+            <version>${ukf-mda.version}</version>
+            <type>test-jar</type>
             <scope>test</scope>
         </dependency>
 
