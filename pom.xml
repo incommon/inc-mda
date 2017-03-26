@@ -27,37 +27,6 @@
         <checkstyle.version>7.6</checkstyle.version>
     </properties>
 
-    <repositories>
-        <repository>
-            <id>shib-release</id>
-            <url>https://build.shibboleth.net/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>shib-snapshot</id>
-            <url>https://build.shibboleth.net/nexus/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>ukf-release</id>
-            <url>https://apps.iay.org.uk/nexus/content/repositories/ukf</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>ukf-snapshot</id>
-            <url>https://apps.iay.org.uk/nexus/content/repositories/ukf-snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-    </repositories>
-
     <dependencies>
 
         <!-- Compile dependencies -->
@@ -119,7 +88,7 @@
                     <dependency>
                         <groupId>org.apache.maven.doxia</groupId>
                         <artifactId>doxia-module-markdown</artifactId>
-                        <version>1.6</version>
+                        <version>1.7</version>
                     </dependency>
                     <!-- support DAV protocol for site deploy -->
                     <dependency>
@@ -139,13 +108,50 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${checkstyle.version}</version>
+                <version>${checkstyle-plugin.version}</version>
                 <configuration>
                     <configLocation>${checkstyle.configLocation}</configLocation>
                 </configuration>
             </plugin>
         </plugins>
     </reporting>
+
+    <repositories>
+        <repository>
+            <id>shib-release</id>
+            <url>https://build.shibboleth.net/nexus/content/groups/public</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>shib-snapshot</id>
+            <url>https://build.shibboleth.net/nexus/content/repositories/snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+        <repository>
+            <id>ukf-release</id>
+            <url>https://apps.iay.org.uk/nexus/content/repositories/ukf</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>ukf-snapshot</id>
+            <url>https://apps.iay.org.uk/nexus/content/repositories/ukf-snapshots</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:git:https://gitlub.iay.org.uk/incommon/inc-mda.git</connection>
+        <developerConnection>scm:git:ssh:git@gitlab.iay.org.uk:incommon/inc-mda.git</developerConnection>
+        <url>https://gitlab.iay.org.uk/incommon/inc-mda</url>
+    </scm>
 
     <developers>
         <developer>
@@ -155,5 +161,20 @@
             <timezone>0</timezone>
         </developer>
     </developers>
+
+    <distributionManagement>
+        <repository>
+            <id>iay-release</id>
+            <url>https://apps.iay.org.uk/nexus/content/repositories/releases</url>
+        </repository>
+        <snapshotRepository>
+            <id>iay-snapshot</id>
+            <url>https://apps.iay.org.uk/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <site>
+            <id>iay-site</id>
+            <url>dav:https://apps.iay.org.uk/nexus/content/sites/site/${project.artifactId}/${project.version}/</url>
+        </site>
+    </distributionManagement>
 
 </project>
