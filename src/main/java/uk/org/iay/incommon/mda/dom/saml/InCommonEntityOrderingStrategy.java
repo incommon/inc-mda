@@ -12,7 +12,7 @@
  * limitations under the License.
  */
 
-package uk.org.iay.incommon.dom.saml;
+package uk.org.iay.incommon.mda.dom.saml;
 
 import java.util.ArrayList;
 import java.util.Collection;

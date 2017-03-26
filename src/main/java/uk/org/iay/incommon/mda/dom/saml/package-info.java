@@ -15,4 +15,4 @@
 /**
  * Aggregator beans dealing with SAML metadata.
  */
-package uk.org.iay.incommon.dom.saml;
+package uk.org.iay.incommon.mda.dom.saml;

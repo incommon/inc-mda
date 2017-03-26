@@ -1,5 +1,5 @@
 
-package uk.org.iay.incommon.dom.saml;
+package uk.org.iay.incommon.mda.dom.saml;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +12,7 @@ import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.ItemId;
 import net.shibboleth.metadata.dom.DOMElementItem;
 import net.shibboleth.metadata.dom.saml.mdrpi.RegistrationAuthority;
+import uk.org.iay.incommon.mda.dom.saml.InCommonEntityOrderingStrategy;
 import uk.org.ukfederation.mda.BaseDOMTest;
 
 public class InCommonEntityOrderingStrategyTest extends BaseDOMTest {

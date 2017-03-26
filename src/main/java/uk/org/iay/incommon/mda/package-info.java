@@ -15,4 +15,4 @@
 /**
  * Aggregator beans for the InCommon federation.
  */
-package uk.org.iay.incommon;
+package uk.org.iay.incommon.mda;
