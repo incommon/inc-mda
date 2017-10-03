@@ -12,11 +12,11 @@ import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.metadata.validate.Validator.Action;
 import uk.org.ukfederation.mda.MockItem;
 
-public class AlwaysRejectValidatorTest {
+public class RejectAllValidatorTest {
 
     @Test
     public void validate() throws Exception {
-        final AlwaysRejectValidator v = new AlwaysRejectValidator();
+        final RejectAllValidator v = new RejectAllValidator();
         v.setId("comp");
         v.initialize();
 
@@ -34,7 +34,7 @@ public class AlwaysRejectValidatorTest {
 
     @Test
     public void validateWithMessage() throws Exception {
-        final AlwaysRejectValidator v = new AlwaysRejectValidator();
+        final RejectAllValidator v = new RejectAllValidator();
         v.setId("comp");
         v.setMessage("decimal %.2f");
         v.initialize();

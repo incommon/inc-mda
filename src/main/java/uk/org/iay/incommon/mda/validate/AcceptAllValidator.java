@@ -25,7 +25,7 @@ import net.shibboleth.metadata.validate.Validator;
  * {@link net.shibboleth.metadata.validate.Validator.Action#DONE}
  * to terminate any validator sequence.
  */
-public class AlwaysAcceptValidator extends BaseValidator implements Validator<Object> {
+public class AcceptAllValidator extends BaseValidator implements Validator<Object> {
 
     @Override
     public Action validate(@Nonnull final Object e, @Nonnull final Item<?> item, @Nonnull final String stageId) {

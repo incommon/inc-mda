@@ -30,7 +30,7 @@ import net.shibboleth.utilities.java.support.logic.Constraint;
  * An error status is added using the value of the given property as a format string.
  * The message defaults to a simple rejection message including the object's string value.
  */
-public class AlwaysRejectValidator extends BaseValidator implements Validator<Object> {
+public class RejectAllValidator extends BaseValidator implements Validator<Object> {
 
     /**
      * Message format string.

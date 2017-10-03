@@ -35,10 +35,10 @@
         Validator beans.
     -->
 
-    <bean id="inc.AlwaysAcceptValidator" abstract="true"
-        class="uk.org.iay.incommon.mda.validate.AlwaysAcceptValidator"/>
+    <bean id="inc.AcceptAllValidator" abstract="true"
+        class="uk.org.iay.incommon.mda.validate.AcceptAllValidator"/>
 
-    <bean id="inc.AlwaysRejectValidator" abstract="true"
-        class="uk.org.iay.incommon.mda.validate.AlwaysRejectValidator"/>
+    <bean id="inc.RejectAllValidator" abstract="true"
+        class="uk.org.iay.incommon.mda.validate.RejectAllValidator"/>
 
 </beans>

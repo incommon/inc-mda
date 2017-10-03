@@ -12,11 +12,11 @@ import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.metadata.validate.Validator.Action;
 import uk.org.ukfederation.mda.MockItem;
 
-public class AlwaysAcceptValidatorTest {
+public class AcceptAllValidatorTest {
 
     @Test
     public void validate() throws Exception {
-        final AlwaysAcceptValidator v = new AlwaysAcceptValidator();
+        final AcceptAllValidator v = new AcceptAllValidator();
         v.setId("comp");
         v.initialize();
 
