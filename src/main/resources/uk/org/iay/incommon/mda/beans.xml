@@ -31,4 +31,14 @@
     <bean id="inc.InCommonEntityOrderingStrategy" abstract="true"
         class="uk.org.iay.incommon.mda.dom.saml.InCommonEntityOrderingStrategy"/>
 
+    <!--
+        Validator beans.
+    -->
+
+    <bean id="inc.AlwaysAcceptValidator" abstract="true"
+        class="uk.org.iay.incommon.mda.validate.AlwaysAcceptValidator"/>
+
+    <bean id="inc.AlwaysRejectValidator" abstract="true"
+        class="uk.org.iay.incommon.mda.validate.AlwaysRejectValidator"/>
+
 </beans>
