@@ -38,6 +38,9 @@
     <bean id="inc.AcceptAllValidator" abstract="true"
         class="uk.org.iay.incommon.mda.validate.AcceptAllValidator"/>
 
+    <bean id="inc.AcceptStringRegexValidator" abstract="true"
+        class="uk.org.iay.incommon.mda.validate.string.AcceptStringRegexValidator"/>
+
     <bean id="inc.AcceptStringValueValidator" abstract="true"
         class="uk.org.iay.incommon.mda.validate.string.AcceptStringValueValidator"/>
 
