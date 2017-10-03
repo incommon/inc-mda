@@ -24,11 +24,13 @@ import net.shibboleth.metadata.validate.Validator;
  * A {@link Validator} which accepts any value, returning
  * {@link net.shibboleth.metadata.validate.Validator.Action#DONE}
  * to terminate any validator sequence.
+ *
+ * @param <V> type of the object to be validated
  */
-public class AcceptAllValidator extends BaseValidator implements Validator<Object> {
+public class AcceptAllValidator<V> extends BaseValidator implements Validator<V> {
 
     @Override
-    public Action validate(@Nonnull final Object e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
+    public Action validate(@Nonnull final V e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
         return Action.DONE;
     }
 

@@ -16,7 +16,7 @@ public class AcceptAllValidatorTest {
 
     @Test
     public void validate() throws Exception {
-        final AcceptAllValidator v = new AcceptAllValidator();
+        final AcceptAllValidator<String> v = new AcceptAllValidator<>();
         v.setId("comp");
         v.initialize();
 

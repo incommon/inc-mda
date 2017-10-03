@@ -29,8 +29,10 @@ import net.shibboleth.utilities.java.support.logic.Constraint;
  *
  * An error status is added using the value of the given property as a format string.
  * The message defaults to a simple rejection message including the object's string value.
+ *
+ * @param <V> type of the object to be validated
  */
-public class RejectAllValidator extends BaseValidator implements Validator<Object> {
+public class RejectAllValidator<V> extends BaseValidator implements Validator<V> {
 
     /**
      * Message format string.
@@ -66,7 +68,7 @@ public class RejectAllValidator extends BaseValidator implements Validator<Objec
     }
 
     @Override
-    public Action validate(@Nonnull final Object e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
+    public Action validate(@Nonnull final V e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
         final String mess = String.format(message, e);
         addError(mess, item, stageId);
         return Action.DONE;

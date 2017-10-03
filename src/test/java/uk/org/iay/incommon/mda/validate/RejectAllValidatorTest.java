@@ -16,7 +16,7 @@ public class RejectAllValidatorTest {
 
     @Test
     public void validate() throws Exception {
-        final RejectAllValidator v = new RejectAllValidator();
+        final RejectAllValidator<String> v = new RejectAllValidator<>();
         v.setId("comp");
         v.initialize();
 
@@ -34,7 +34,7 @@ public class RejectAllValidatorTest {
 
     @Test
     public void validateWithMessage() throws Exception {
-        final RejectAllValidator v = new RejectAllValidator();
+        final RejectAllValidator<Double> v = new RejectAllValidator<>();
         v.setId("comp");
         v.setMessage("decimal %.2f");
         v.initialize();
