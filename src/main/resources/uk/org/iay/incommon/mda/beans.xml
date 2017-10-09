@@ -35,19 +35,19 @@
         Validator beans.
     -->
 
-    <bean id="inc.AcceptAllValidator" abstract="true"
+    <bean id="inc.AcceptAllValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.AcceptAllValidator"/>
 
-    <bean id="inc.AcceptStringRegexValidator" abstract="true"
+    <bean id="inc.AcceptStringRegexValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.string.AcceptStringRegexValidator"/>
 
-    <bean id="inc.AcceptStringValueValidator" abstract="true"
+    <bean id="inc.AcceptStringValueValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.string.AcceptStringValueValidator"/>
 
-    <bean id="inc.RejectAllValidator" abstract="true"
+    <bean id="inc.RejectAllValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.RejectAllValidator"/>
 
-    <bean id="inc.RejectStringRegexValidator" abstract="true"
+    <bean id="inc.RejectStringRegexValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.string.RejectStringRegexValidator"/>
 
 </beans>
