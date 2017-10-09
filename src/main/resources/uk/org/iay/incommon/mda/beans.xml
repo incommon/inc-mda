@@ -47,4 +47,7 @@
     <bean id="inc.RejectAllValidator" abstract="true"
         class="uk.org.iay.incommon.mda.validate.RejectAllValidator"/>
 
+    <bean id="inc.RejectStringRegexValidator" abstract="true"
+        class="uk.org.iay.incommon.mda.validate.string.RejectStringRegexValidator"/>
+
 </beans>
