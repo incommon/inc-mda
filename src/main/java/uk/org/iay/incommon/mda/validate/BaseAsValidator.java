@@ -1,0 +1,150 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package uk.org.iay.incommon.mda.validate;
+
+import java.util.List;
+
+import javax.annotation.Nonnull;
+
+import net.shibboleth.metadata.Item;
+import net.shibboleth.metadata.pipeline.StageProcessingException;
+import net.shibboleth.metadata.validate.Validator;
+import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
+
+/**
+ * An abstract base class for {@link Validator} implementations which validate a value of
+ * one type "as" another type.
+ *
+ * <p>The implementation calls a template method in the implementation subclass to perform the
+ * conversion. If the conversion succeeds, a sequence of {@link Validator}s are applied to
+ * that new value.</p>
+ *
+ * <p>If the value cannot be converted to the new type, the template method is expected to
+ * throw {@link IllegalArgumentException}. In this case, behaviour depends on the
+ * {@link #conversionRequired} property.</p>
+ *
+ * <p>If {@link #conversionRequired} is <code>true</code> (the default) then an error
+ * status will be applied to the {@link Item}, and the validator will return
+ * {@link net.shibboleth.metadata.validate.Validator.Action#DONE}.</p>
+ *
+ * <p>If {@link #conversionRequired} is <code>false</code> then the validator
+ * will simply return {@link net.shibboleth.metadata.validate.Validator.Action#CONTINUE}
+ * so that subsequent validators may still be applied. This allows several "as" validators
+ * to be applied in sequence, each taking a different approach.</p>
+ *
+ * @param <V> type of the original value
+ * @param <A> type of the new value to which validators should be applied
+ */
+public abstract class BaseAsValidator<V, A> extends BaseLocalValidator implements Validator<V> {
+
+    /** The validator sequence to apply. */
+    @Nonnull
+    private ValidatorSequence<A> validators = new ValidatorSequence<>();
+
+    /** Whether conversion to the new type must succeed. Default: <code>true</code> */
+    private boolean conversionRequired = true;
+
+    /**
+     * Set the list of validators to apply to each item.
+     * 
+     * @param newValidators the list of validators to set
+     */
+    public void setValidators(@Nonnull final List<Validator<A>> newValidators) {
+        validators.setValidators(newValidators);
+    }
+
+    /**
+     * Gets the list of validators being applied to each item.
+     * 
+     * @return list of validators
+     */
+    @Nonnull
+    public List<Validator<A>> getValidators() {
+        return validators.getValidators();
+    }
+
+    /**
+     * Set whether conversion to the new type is required to succeed.
+     *
+     * @param required <code>true</code> if the conversion is required to succeed
+     */
+    public void setConversionRequired(final boolean required) {
+        conversionRequired = required;
+    }
+
+    /**
+     * Returns whether conversion to the new type is required to succeed.
+     *
+     * @return <code>true</code> if the conversion is required to succeed
+     */
+    public boolean isConversionRequired() {
+        return conversionRequired;
+    }
+
+    /**
+     * Apply each of the configured validators in turn to the provided object.
+     *
+     * @param value object to be validated
+     * @param item the {@link Item} context for the validation
+     *
+     * @return the result of applying the validators to the value
+     *
+     * @throws StageProcessingException if errors occur during processing
+     */
+    protected Action applyValidators(@Nonnull final A value, @Nonnull final Item<?> item)
+            throws StageProcessingException {
+        return validators.validate(value, item, getId());
+    }
+
+    /**
+     * Convert from the old value type to the new.
+     *
+     * @param from a value of the old type
+     * @return a value of the new type
+     * @throws IllegalArgumentException if a conversion can not be performed
+     */
+    protected abstract A convert(@Nonnull final V from) throws IllegalArgumentException;
+
+    @Override
+    public Action validate(@Nonnull final V t, @Nonnull final Item<?> item, @Nonnull final String stageId)
+            throws StageProcessingException {
+        try {
+            final A v = convert(t);
+            return applyValidators(v, item);
+        } catch (final IllegalArgumentException e) {
+            if (isConversionRequired()) {
+                addErrorMessage(t, item, stageId);
+                return Action.DONE;
+            } else {
+                return Action.CONTINUE;
+            }
+        }
+    }
+
+    @Override
+    protected void doDestroy() {
+        validators.destroy();
+        validators = null;
+        super.doDestroy();
+    }
+
+    @Override
+    protected void doInitialize() throws ComponentInitializationException {
+        super.doInitialize();
+        validators.setId(getId());
+        validators.initialize();
+    }
+
+}
