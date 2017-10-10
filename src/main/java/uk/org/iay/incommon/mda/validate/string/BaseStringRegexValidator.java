@@ -18,15 +18,15 @@ import java.util.regex.Pattern;
 
 import javax.annotation.Nonnull;
 
-import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.utilities.java.support.annotation.constraint.NonnullAfterInit;
 import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
 import net.shibboleth.utilities.java.support.component.ComponentSupport;
+import uk.org.iay.incommon.mda.validate.BaseLocalValidator;
 
 /**
  * A base class for <code>Validator</code>s that match {@link String} values against a regular expression.
  */
-public abstract class BaseStringRegexValidator extends BaseValidator {
+public abstract class BaseStringRegexValidator extends BaseLocalValidator {
 
     /** Regular expression to be accepted by this validator. */
     @NonnullAfterInit

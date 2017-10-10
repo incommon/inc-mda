@@ -17,10 +17,7 @@ package uk.org.iay.incommon.mda.validate;
 import javax.annotation.Nonnull;
 
 import net.shibboleth.metadata.Item;
-import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
-import net.shibboleth.utilities.java.support.component.ComponentSupport;
-import net.shibboleth.utilities.java.support.logic.Constraint;
 
 /**
  * A {@link Validator} which rejects any value, returning
@@ -32,45 +29,11 @@ import net.shibboleth.utilities.java.support.logic.Constraint;
  *
  * @param <V> type of the object to be validated
  */
-public class RejectAllValidator<V> extends BaseValidator implements Validator<V> {
-
-    /**
-     * Message format string.
-     *
-     * The generated message is formatted using this with the object being validated passed
-     * as an argument.
-     *
-     * Defaults to <code>"value rejected: '%s'"</code>.
-     */
-    @Nonnull
-    private String message = "value rejected: '%s'";
-
-    /**
-     * Returns the message format string.
-     *
-     * @return the message format string
-     */
-    @Nonnull
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * Set the message format string.
-     * 
-     * @param newMessage the new message format string
-     */
-    public void setMessage(@Nonnull final String newMessage) {
-        ComponentSupport.ifDestroyedThrowDestroyedComponentException(this);
-        ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
-
-        message = Constraint.isNotNull(newMessage, "message format string may not be null");
-    }
+public class RejectAllValidator<V> extends BaseLocalValidator implements Validator<V> {
 
     @Override
     public Action validate(@Nonnull final V e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
-        final String mess = String.format(message, e);
-        addError(mess, item, stageId);
+        addErrorMessage(e, item, stageId);
         return Action.DONE;
     }
 

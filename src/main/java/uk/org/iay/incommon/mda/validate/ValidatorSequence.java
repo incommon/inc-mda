@@ -25,7 +25,6 @@ import com.google.common.collect.Iterables;
 
 import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
-import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
 import net.shibboleth.utilities.java.support.component.ComponentSupport;
@@ -40,7 +39,7 @@ import net.shibboleth.utilities.java.support.component.ComponentSupport;
  *
  * @param <V> type of the object to be validated
  */
-public class ValidatorSequence<V> extends BaseValidator implements Validator<V> {
+public class ValidatorSequence<V> extends BaseLocalValidator implements Validator<V> {
 
     /** The list of validators to apply. */
     @Nonnull
