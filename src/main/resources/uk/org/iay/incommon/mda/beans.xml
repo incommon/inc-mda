@@ -53,6 +53,9 @@
     <bean id="inc.RejectDomainNameNotUnderPublicSuffixValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.net.RejectDomainNameNotUnderPublicSuffixValidator"/>
 
+    <bean id="inc.RejectDomainNamePublicSuffixValidator" abstract="true" parent="inc.component_parent"
+        class="uk.org.iay.incommon.mda.validate.net.RejectDomainNamePublicSuffixValidator"/>
+
     <bean id="inc.RejectStringRegexValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.string.RejectStringRegexValidator"/>
 
