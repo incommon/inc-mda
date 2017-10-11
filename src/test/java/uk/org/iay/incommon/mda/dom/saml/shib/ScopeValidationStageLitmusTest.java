@@ -139,6 +139,7 @@ public class ScopeValidationStageLitmusTest extends AbstractTestNGSpringContextT
         bad("ac.uk", "scope is a public suffix");
         bad("random.nonsense", "scope is not under a public suffix");
         good("example.ac.uk");
+        bad("adm.aau.dk@aau.dk"); // incommon/inc-meta#58
 
         badRegexp("", "empty");
         badRegexp(" ");
@@ -166,7 +167,5 @@ public class ScopeValidationStageLitmusTest extends AbstractTestNGSpringContextT
         goodRegexp("^.+\\.identityfor\\.co\\.uk$");
         goodRegexp("^.+\\.rmunify\\.com$");
 
-        // eduGAIN examples
-        
     }
 }
