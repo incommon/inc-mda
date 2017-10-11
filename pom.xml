@@ -199,7 +199,7 @@
     </repositories>
 
     <scm>
-        <connection>scm:git:https://gitlub.iay.org.uk/incommon/inc-mda.git</connection>
+        <connection>scm:git:https://gitlab.iay.org.uk/incommon/inc-mda.git</connection>
         <developerConnection>scm:git:ssh:git@gitlab.iay.org.uk:incommon/inc-mda.git</developerConnection>
         <url>https://gitlab.iay.org.uk/incommon/inc-mda</url>
     </scm>
