@@ -47,6 +47,9 @@
     <bean id="inc.AsDomainNameStringValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.string.AsDomainNameStringValidator"/>
 
+    <bean id="inc.AsLiteralTailStringValidator" abstract="true" parent="inc.component_parent"
+        class="uk.org.iay.incommon.mda.validate.string.AsLiteralTailStringValidator"/>
+
     <bean id="inc.RejectAllValidator" abstract="true" parent="inc.component_parent"
         class="uk.org.iay.incommon.mda.validate.RejectAllValidator"/>
 
