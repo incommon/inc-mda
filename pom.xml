@@ -24,6 +24,7 @@
         <mda.version>0.9.2</mda.version>
         <ukf-mda.version>0.9.4</ukf-mda.version>
         <java-support.version>7.2.0</java-support.version>
+        <spring-extensions.version>5.2.0</spring-extensions.version>
         <checkstyle.version>7.6</checkstyle.version>
     </properties>
 
@@ -57,6 +58,12 @@
         <!-- Test dependencies -->
 
         <dependency>
+            <groupId>net.shibboleth.ext</groupId>
+            <artifactId>spring-extensions</artifactId>
+            <version>${spring-extensions.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>uk.org.ukfederation</groupId>
             <artifactId>ukf-mda</artifactId>
             <version>${ukf-mda.version}</version>
@@ -76,6 +83,11 @@
         <dependency>
             <groupId>${spring.groupId}</groupId>
             <artifactId>spring-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>${spring.groupId}</groupId>
+            <artifactId>spring-test</artifactId>
             <scope>test</scope>
         </dependency>
 

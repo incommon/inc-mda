@@ -32,6 +32,13 @@
         class="uk.org.iay.incommon.mda.dom.saml.InCommonEntityOrderingStrategy"/>
 
     <!--
+        Stage beans.
+    -->
+
+    <bean id="inc.ScopeValidationStage" abstract="true" parent="inc.stage_parent"
+        class="uk.org.iay.incommon.mda.dom.saml.shib.ScopeValidationStage"/>
+
+    <!--
         Validator beans.
     -->
 
