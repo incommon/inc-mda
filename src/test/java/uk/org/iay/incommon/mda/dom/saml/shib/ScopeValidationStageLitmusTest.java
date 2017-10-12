@@ -140,6 +140,8 @@ public class ScopeValidationStageLitmusTest extends AbstractTestNGSpringContextT
         bad("random.nonsense", "scope is not under a public suffix");
         good("example.ac.uk");
         bad("adm.aau.dk@aau.dk"); // incommon/inc-meta#58
+        bad("example .org", "white space");
+        bad("\nexample.org", "white space");
 
         badRegexp("", "empty");
         badRegexp(" ");
