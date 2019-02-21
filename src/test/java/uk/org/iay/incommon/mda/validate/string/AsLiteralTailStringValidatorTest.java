@@ -64,4 +64,28 @@ public class AsLiteralTailStringValidatorTest {
         Assert.assertEquals(ccv.value, "aaf.edu.au");
     }
 
+    /*
+     * Example from the REFEDS MRPS template document.
+     *
+     * See https://github.com/REFEDS/MRPS/blob/master/MRPS-templatev1.1.pdf
+     */
+    @Test
+    public void testREFEDSExample() throws Exception {
+        final CountingCapturingValidator ccv = new CountingCapturingValidator(Action.CONTINUE);
+        ccv.setId("ccv");
+        ccv.initialize();
+
+        final List<Validator<String>> nvs = new ArrayList<>();
+        nvs.add(ccv);
+
+        final AsLiteralTailStringValidator val = new AsLiteralTailStringValidator();
+        val.setId("val");
+        val.setValidators(nvs);
+        val.initialize();
+
+        final Item<String> item = new MockItem("content");
+        Assert.assertEquals(val.validate("^(foo|bar)\\.example\\.com$", item, "stage"), Action.CONTINUE);
+        Assert.assertEquals(ccv.count, 1);
+        Assert.assertEquals(ccv.value, "example.com");
+    }
 }
