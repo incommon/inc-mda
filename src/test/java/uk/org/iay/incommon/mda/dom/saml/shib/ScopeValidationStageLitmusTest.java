@@ -82,7 +82,10 @@ public class ScopeValidationStageLitmusTest extends AbstractTestNGSpringContextT
     private void good(final String value, final boolean isRegex) throws Exception {
         final Item<Element> item = new DOMElementItem(buildDocument(value, isRegex));
         final List<ErrorStatus> errors = runTest(item);
-        Assert.assertEquals(errors.size(), 0, "expected no errors for '" + value + "'[" + isRegex + "]");
+        if (errors.size() != 0) {
+            Assert.fail("expected no errors for '" + value + "'[" + isRegex + "] " +
+                "but saw \"" + errors.get(0).getStatusMessage() + "\"");
+        }
     }
 
     /** Test a non-regexp value we expect to be accepted. */
@@ -128,12 +131,12 @@ public class ScopeValidationStageLitmusTest extends AbstractTestNGSpringContextT
     @Test
     public void litmusTests() throws Exception {
         good("example.org");
+        good("UGent.be");
         bad("", "empty");
         bad(" ");
         bad("  ");
         bad(" example.org", "white space");
         bad("example.org ", "white space");
-        bad("EXAMPLE.ORG", "upper-case");
         bad("example**.org", "scope is not a valid domain name: example**.org");
         bad("uk", "scope is a public suffix");
         bad("ac.uk", "scope is a public suffix");
@@ -155,8 +158,6 @@ public class ScopeValidationStageLitmusTest extends AbstractTestNGSpringContextT
         badRegexp("^([a-zA-Z0-9-]{1,63}\\.){0,2}vho\\.aaf\\.edu\\.nopublic$", "literal tail is not under a public suffix");
         // bad literal tail: is a public suffix
         badRegexp("^.*\\.ac\\.uk$", "literal tail is a public suffix");
-        // bad literal tail: upper case
-        badRegexp("^([a-zA-Z0-9-]{1,63}\\.){0,2}vho\\.aaf\\.edu\\.AU$", "includes upper-case characters");
 
         // UK federation examples
         goodRegexp("^.+\\.atomwide\\.com$");
@@ -169,5 +170,7 @@ public class ScopeValidationStageLitmusTest extends AbstractTestNGSpringContextT
         goodRegexp("^.+\\.identityfor\\.co\\.uk$");
         goodRegexp("^.+\\.rmunify\\.com$");
 
+        // Combination regexp plus case significance
+        goodRegexp("^.+\\.UGent\\.be$");
     }
 }
