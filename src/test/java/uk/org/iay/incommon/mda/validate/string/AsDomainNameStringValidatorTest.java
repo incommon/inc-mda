@@ -11,15 +11,15 @@ import com.google.common.net.InternetDomainName;
 
 import net.shibboleth.metadata.ErrorStatus;
 import net.shibboleth.metadata.Item;
+import net.shibboleth.metadata.MockItem;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
+import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.metadata.validate.Validator.Action;
-import uk.org.iay.incommon.mda.validate.BaseLocalValidator;
-import uk.org.ukfederation.mda.MockItem;
 
 public class AsDomainNameStringValidatorTest {
 
-    private static class CountingValidator extends BaseLocalValidator implements Validator<InternetDomainName> {
+    private static class CountingValidator extends BaseValidator implements Validator<InternetDomainName> {
         public int count;
         private final Action action;
 

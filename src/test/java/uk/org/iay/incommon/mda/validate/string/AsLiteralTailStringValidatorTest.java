@@ -10,15 +10,15 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import net.shibboleth.metadata.Item;
+import net.shibboleth.metadata.MockItem;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
+import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.metadata.validate.Validator.Action;
-import uk.org.iay.incommon.mda.validate.BaseLocalValidator;
-import uk.org.ukfederation.mda.MockItem;
 
 public class AsLiteralTailStringValidatorTest {
 
-    private static class CountingCapturingValidator extends BaseLocalValidator implements Validator<String> {
+    private static class CountingCapturingValidator extends BaseValidator implements Validator<String> {
         public int count;
         public String value;
         private final Action action;

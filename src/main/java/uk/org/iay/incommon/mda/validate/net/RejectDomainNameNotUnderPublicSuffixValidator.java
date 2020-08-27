@@ -19,8 +19,8 @@ import javax.annotation.Nonnull;
 import com.google.common.net.InternetDomainName;
 
 import net.shibboleth.metadata.Item;
+import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
-import uk.org.iay.incommon.mda.validate.BaseLocalValidator;
 
 /**
  * A validator that checks whether an {@link InternetDomainName} is under a public suffix.
@@ -28,7 +28,7 @@ import uk.org.iay.incommon.mda.validate.BaseLocalValidator;
  * A domain name which is <em>not</em> under a public suffix might be a public suffix itself,
  * or might terminate in something which is not a public suffix.
  */
-public class RejectDomainNameNotUnderPublicSuffixValidator extends BaseLocalValidator
+public class RejectDomainNameNotUnderPublicSuffixValidator extends BaseValidator
     implements Validator<InternetDomainName> {
 
     @Override

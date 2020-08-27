@@ -10,10 +10,9 @@ import org.w3c.dom.Element;
 
 import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.ItemId;
+import net.shibboleth.metadata.dom.BaseDOMTest;
 import net.shibboleth.metadata.dom.DOMElementItem;
 import net.shibboleth.metadata.dom.saml.mdrpi.RegistrationAuthority;
-import uk.org.iay.incommon.mda.dom.saml.InCommonEntityOrderingStrategy;
-import uk.org.ukfederation.mda.BaseDOMTest;
 
 public class InCommonEntityOrderingStrategyTest extends BaseDOMTest {
 
@@ -22,7 +21,7 @@ public class InCommonEntityOrderingStrategyTest extends BaseDOMTest {
     }
 
     private Item<Element> makeItem(String registrar, String entityID) throws Exception {
-        final Item<Element> item = new DOMElementItem(readXmlData("trivial.xml"));
+        final Item<Element> item = new DOMElementItem(readXMLData("trivial.xml"));
         item.getItemMetadata().put(new ItemId(entityID));
         item.getItemMetadata().put(new RegistrationAuthority(registrar));
         return item;

@@ -20,7 +20,10 @@ import javax.annotation.Nonnull;
 
 import org.w3c.dom.Element;
 
+import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.dom.AbstractDOMValidationStage;
+import net.shibboleth.metadata.dom.DOMTraversalContext;
+import net.shibboleth.metadata.dom.SimpleDOMTraversalContext;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
 import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
@@ -35,7 +38,7 @@ import uk.org.iay.incommon.mda.validate.ValidatorSequence;
  * A separate collection of validators is used for the case of the <code>regexp</code>
  * attribute being <code>true</code> and <code>false</code>.
  */
-public class ScopeValidationStage extends AbstractDOMValidationStage<String> {
+public class ScopeValidationStage extends AbstractDOMValidationStage<String, DOMTraversalContext> {
 
     /** The sequence of validators to apply to <code>regexp</code> scopes. */
     @Nonnull
@@ -61,12 +64,17 @@ public class ScopeValidationStage extends AbstractDOMValidationStage<String> {
     }
 
     @Override
-    protected boolean applicable(@Nonnull final Element element) {
+    protected DOMTraversalContext buildContext(@Nonnull final Item<Element> item) {
+        return new SimpleDOMTraversalContext(item);
+    }
+
+    @Override
+    protected boolean applicable(@Nonnull final Element element, @Nonnull final DOMTraversalContext context) {
         return ElementSupport.isElementNamed(element, ShibbolethMetadataSupport.SCOPE_NAME);
     }
 
     @Override
-    protected void visit(@Nonnull final Element element, @Nonnull final TraversalContext context)
+    protected void visit(@Nonnull final Element element, @Nonnull final DOMTraversalContext context)
             throws StageProcessingException {
         final String text = element.getTextContent();
         final Boolean isRegexp = AttributeSupport.getAttributeValueAsBoolean(

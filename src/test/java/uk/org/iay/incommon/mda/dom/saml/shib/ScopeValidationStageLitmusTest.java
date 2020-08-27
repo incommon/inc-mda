@@ -2,7 +2,6 @@
 package uk.org.iay.incommon.mda.dom.saml.shib;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -71,7 +70,7 @@ public class ScopeValidationStageLitmusTest extends AbstractTestNGSpringContextT
 
     /** Run the test stage on a single {@link Item}. */
     private List<ErrorStatus> runTest(final Item<Element> item) throws Exception {
-        final Collection<Item<Element>> coll = new ArrayList<>();
+        final List<Item<Element>> coll = new ArrayList<>();
         coll.add(item);
         stage.execute(coll);
         final List<ErrorStatus> errors = item.getItemMetadata().get(ErrorStatus.class);

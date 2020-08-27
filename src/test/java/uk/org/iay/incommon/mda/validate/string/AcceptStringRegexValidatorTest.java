@@ -8,9 +8,9 @@ import org.testng.annotations.Test;
 
 import net.shibboleth.metadata.ErrorStatus;
 import net.shibboleth.metadata.Item;
+import net.shibboleth.metadata.MockItem;
 import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.metadata.validate.Validator.Action;
-import uk.org.ukfederation.mda.MockItem;
 
 public class AcceptStringRegexValidatorTest {
 

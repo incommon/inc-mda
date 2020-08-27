@@ -20,6 +20,7 @@ import javax.annotation.Nonnull;
 
 import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
+import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
 
@@ -47,7 +48,7 @@ import net.shibboleth.utilities.java.support.component.ComponentInitializationEx
  * @param <V> type of the original value
  * @param <A> type of the new value to which validators should be applied
  */
-public abstract class BaseAsValidator<V, A> extends BaseLocalValidator implements Validator<V> {
+public abstract class BaseAsValidator<V, A> extends BaseValidator implements Validator<V> {
 
     /** The validator sequence to apply. */
     @Nonnull

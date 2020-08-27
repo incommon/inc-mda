@@ -19,13 +19,13 @@ import javax.annotation.Nonnull;
 import com.google.common.net.InternetDomainName;
 
 import net.shibboleth.metadata.Item;
+import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
-import uk.org.iay.incommon.mda.validate.BaseLocalValidator;
 
 /**
  * A validator that rejects an {@link InternetDomainName} if it is a public suffix.
  */
-public class RejectDomainNamePublicSuffixValidator extends BaseLocalValidator
+public class RejectDomainNamePublicSuffixValidator extends BaseValidator
     implements Validator<InternetDomainName> {
 
     @Override

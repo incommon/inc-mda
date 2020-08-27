@@ -17,6 +17,7 @@ package uk.org.iay.incommon.mda.validate;
 import javax.annotation.Nonnull;
 
 import net.shibboleth.metadata.Item;
+import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
 
 /**
@@ -29,7 +30,7 @@ import net.shibboleth.metadata.validate.Validator;
  *
  * @param <V> type of the object to be validated
  */
-public class RejectAllValidator<V> extends BaseLocalValidator implements Validator<V> {
+public class RejectAllValidator<V> extends BaseValidator implements Validator<V> {
 
     @Override
     public Action validate(@Nonnull final V e, @Nonnull final Item<?> item, @Nonnull final String stageId) {

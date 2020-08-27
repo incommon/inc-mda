@@ -15,7 +15,6 @@
 package uk.org.iay.incommon.mda.dom.saml;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -28,8 +27,8 @@ import org.w3c.dom.Element;
 
 import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.ItemId;
-import net.shibboleth.metadata.dom.saml.EntitiesDescriptorAssemblerStage.ItemOrderingStrategy;
 import net.shibboleth.metadata.dom.saml.mdrpi.RegistrationAuthority;
+import net.shibboleth.metadata.pipeline.ItemOrderingStrategy;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
 import net.shibboleth.utilities.java.support.annotation.constraint.NonnullElements;
 
@@ -43,24 +42,29 @@ import net.shibboleth.utilities.java.support.annotation.constraint.NonnullElemen
  * 
  * The registrar and entityID values used for ordering are required to be
  * present in the item's item metadata.
+ *
+ * @param <T> type of item to be handled
  */
 @ThreadSafe
-public class InCommonEntityOrderingStrategy implements ItemOrderingStrategy {
+public class InCommonEntityOrderingStrategy<T> implements ItemOrderingStrategy<T> {
 
     /** Class logger. */
     private final Logger log = LoggerFactory.getLogger(InCommonEntityOrderingStrategy.class);
 
     /** The registrar whose entities should always appear first, in the provided order. */
+
     private final String distinguishedRegistrar;
 
     /**
-     * Helper class which wraps an {@link Element} {@link Item} but extracts any
+     * Helper class which wraps an {@link Item} but extracts any
      * associated {@link RegistrationAuthority} and {@link ItemId} for simpler comparisons.
+     *
+     * @param <T> type of item to be handled
      */
-    private static class OrderableItem implements Comparable<OrderableItem> {
+    private static class OrderableItem<T> implements Comparable<OrderableItem> {
 
         /** The wrapped {@link Element} {@link Item}. */
-        private final Item<Element> item;
+        private final Item<T> item;
 
         /** The registrar for this entity. */
         private final String registrar;
@@ -75,7 +79,7 @@ public class InCommonEntityOrderingStrategy implements ItemOrderingStrategy {
          * @param reg the registrar for this entity
          * @param entity the entityID for this entity
          */
-        public OrderableItem(@Nonnull final Item<Element> domItem,
+        public OrderableItem(@Nonnull final Item<T> domItem,
                 @Nonnull final String reg, @Nonnull final String entity) {
             item = domItem;
             registrar = reg;
@@ -99,7 +103,7 @@ public class InCommonEntityOrderingStrategy implements ItemOrderingStrategy {
          * 
          * @return the wrapped {@link Element} {@link Item}.
          */
-        public Item<Element> unwrap() {
+        public Item<T> unwrap() {
             return item;
         }
     }
@@ -114,10 +118,10 @@ public class InCommonEntityOrderingStrategy implements ItemOrderingStrategy {
     }
 
     @Override
-    public List<Item<Element>> order(@Nonnull @NonnullElements final Collection<Item<Element>> items) {
+    public List<Item<T>> order(@Nonnull @NonnullElements final List<Item<T>> items) {
 
         // Collect the results here
-        final List<Item<Element>> results = new ArrayList<>(items.size());
+        final List<Item<T>> results = new ArrayList<>(items.size());
 
         /*
          * Construct an orderable list wrapping the original items.
@@ -125,9 +129,9 @@ public class InCommonEntityOrderingStrategy implements ItemOrderingStrategy {
          * Any belonging to the distinguished registrar are instead put straight in the
          * results list.
          */
-        final List<OrderableItem> orderableList = new ArrayList<>(items.size());
+        final List<OrderableItem<T>> orderableList = new ArrayList<>(items.size());
         try {
-            for (Item<Element> item : items) {
+            for (final Item<T> item : items) {
                 final List<RegistrationAuthority> registrars = item.getItemMetadata().get(RegistrationAuthority.class);
                 final String registrar;
                 if (registrars.size() == 0) {
@@ -150,7 +154,7 @@ public class InCommonEntityOrderingStrategy implements ItemOrderingStrategy {
 
                 orderableList.add(new OrderableItem(item, registrar, entityID));
             }
-        } catch (StageProcessingException e) {
+        } catch (final StageProcessingException e) {
             /*
              * If the ordering operation fails because we can't create an OrderableItem
              * for each original item, it's probably because we are missing some item
@@ -169,7 +173,7 @@ public class InCommonEntityOrderingStrategy implements ItemOrderingStrategy {
         Collections.sort(orderableList);
 
         // Add the ordered results into the results collection
-        for (OrderableItem result : orderableList) {
+        for (final OrderableItem result : orderableList) {
             results.add(result.unwrap());
         }
 
