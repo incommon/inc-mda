@@ -42,7 +42,7 @@
         </dependency>
         <dependency>
             <groupId>net.shibboleth.metadata</groupId>
-            <artifactId>aggregator-pipeline</artifactId>
+            <artifactId>mda-framework</artifactId>
             <version>${mda.version}</version>
         </dependency>
         <dependency>
@@ -65,7 +65,7 @@
         </dependency>
         <dependency>
             <groupId>net.shibboleth.metadata</groupId>
-            <artifactId>aggregator-pipeline</artifactId>
+            <artifactId>mda-framework</artifactId>
             <version>${mda.version}</version>
             <type>test-jar</type>
             <scope>test</scope>
