@@ -1,2 +1,7 @@
 /target/
 /test-output/
+
+# Eclipse files
+.classpath
+.project
+.settings
