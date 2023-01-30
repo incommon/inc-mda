@@ -10,7 +10,7 @@
 
     <import resource="classpath:uk/org/iay/incommon/mda/beans.xml"/>
 
-    <bean class="net.shibboleth.ext.spring.config.IdentifiableBeanPostProcessor"/>
+    <bean class="net.shibboleth.shared.spring.config.IdentifiableBeanPostProcessor"/>
 
     <bean id="litmusTest" parent="inc.stage_parent"
         class="uk.org.iay.incommon.mda.dom.saml.shib.ScopeValidationStage">

@@ -26,9 +26,9 @@ import net.shibboleth.metadata.dom.DOMTraversalContext;
 import net.shibboleth.metadata.dom.SimpleDOMTraversalContext;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
 import net.shibboleth.metadata.validate.Validator;
-import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
-import net.shibboleth.utilities.java.support.xml.AttributeSupport;
-import net.shibboleth.utilities.java.support.xml.ElementSupport;
+import net.shibboleth.shared.component.ComponentInitializationException;
+import net.shibboleth.shared.xml.AttributeSupport;
+import net.shibboleth.shared.xml.ElementSupport;
 import uk.org.iay.incommon.mda.validate.ValidatorSequence;
 
 /**

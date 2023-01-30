@@ -19,8 +19,8 @@ import net.shibboleth.metadata.ErrorStatus;
 import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.dom.DOMElementItem;
 import net.shibboleth.metadata.pipeline.Stage;
-import net.shibboleth.utilities.java.support.xml.AttributeSupport;
-import net.shibboleth.utilities.java.support.xml.ElementSupport;
+import net.shibboleth.shared.xml.AttributeSupport;
+import net.shibboleth.shared.xml.ElementSupport;
 
 /**
  * A litmus test for {@link ScopeValidationStage} involving a set of valid and invalid

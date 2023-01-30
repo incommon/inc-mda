@@ -27,8 +27,8 @@ import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
 import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
-import net.shibboleth.utilities.java.support.component.ComponentInitializationException;
-import net.shibboleth.utilities.java.support.component.ComponentSupport;
+import net.shibboleth.shared.component.ComponentInitializationException;
+import net.shibboleth.shared.component.ComponentSupport;
 
 /**
  * A {@link Validator} implementation which encapsulates the functionality of stepping

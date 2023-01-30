@@ -30,7 +30,7 @@ import net.shibboleth.metadata.ItemId;
 import net.shibboleth.metadata.dom.saml.mdrpi.RegistrationAuthority;
 import net.shibboleth.metadata.pipeline.ItemOrderingStrategy;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
-import net.shibboleth.utilities.java.support.annotation.constraint.NonnullElements;
+import net.shibboleth.shared.annotation.constraint.NonnullElements;
 
 /**
  * Implements an ordering strategy for InCommon federation aggregates.
