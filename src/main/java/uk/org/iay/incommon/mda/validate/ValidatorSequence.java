@@ -14,21 +14,16 @@
 
 package uk.org.iay.incommon.mda.validate;
 
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-
-import com.google.common.base.Predicates;
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.Iterables;
 
 import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
 import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
+import net.shibboleth.shared.collection.CollectionSupport;
 import net.shibboleth.shared.component.ComponentInitializationException;
-import net.shibboleth.shared.component.ComponentSupport;
 
 /**
  * A {@link Validator} implementation which encapsulates the functionality of stepping
@@ -44,7 +39,7 @@ public class ValidatorSequence<V> extends BaseValidator implements Validator<V> 
 
     /** The list of validators to apply. */
     @Nonnull
-    private List<Validator<V>> validators = Collections.emptyList();
+    private List<Validator<V>> validators = CollectionSupport.listOf();
 
     /**
      * Set the list of validators to apply to each item.
@@ -52,10 +47,9 @@ public class ValidatorSequence<V> extends BaseValidator implements Validator<V> 
      * @param newValidators the list of validators to set
      */
     public void setValidators(@Nonnull final List<Validator<V>> newValidators) {
-        ComponentSupport.ifDestroyedThrowDestroyedComponentException(this);
-        ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
+        checkSetterPreconditions();
 
-        validators = ImmutableList.copyOf(Iterables.filter(newValidators, Predicates.notNull()));
+        validators = CollectionSupport.copyToList(newValidators);
     }
 
     /**
@@ -63,13 +57,12 @@ public class ValidatorSequence<V> extends BaseValidator implements Validator<V> 
      * 
      * @return list of validators
      */
-    @Nonnull
-    public List<Validator<V>> getValidators() {
-        return Collections.unmodifiableList(validators);
+    public @Nonnull List<Validator<V>> getValidators() {
+        return validators;
     }
 
     @Override
-    public Action validate(@Nonnull final V value, @Nonnull final Item<?> item, @Nonnull final String stageId)
+    public @Nonnull Action validate(@Nonnull final V value, @Nonnull final Item<?> item, @Nonnull final String stageId)
             throws StageProcessingException {
         for (final Validator<V> validator: validators) {
             final Action action = validator.validate(value, item, stageId);
@@ -78,12 +71,6 @@ public class ValidatorSequence<V> extends BaseValidator implements Validator<V> 
             }
         }
         return Action.CONTINUE;
-    }
-
-    @Override
-    protected void doDestroy() {
-        validators = null;
-        super.doDestroy();
     }
 
     @Override

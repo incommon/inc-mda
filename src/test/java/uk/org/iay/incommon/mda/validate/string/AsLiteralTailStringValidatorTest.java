@@ -6,12 +6,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import javax.annotation.Nonnull;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import net.shibboleth.metadata.Item;
-import net.shibboleth.metadata.MockItem;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
+import net.shibboleth.metadata.testing.MockItem;
 import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.metadata.validate.Validator.Action;
@@ -21,17 +23,17 @@ public class AsLiteralTailStringValidatorTest {
     private static class CountingCapturingValidator extends BaseValidator implements Validator<String> {
         public int count;
         public String value;
-        private final Action action;
+        private final @Nonnull Action action;
 
         @Override
-        public Action validate(String e, Item<?> item, String stageId) throws StageProcessingException {
+        public @Nonnull Action validate(@Nonnull String e, @Nonnull Item<?> item, @Nonnull String stageId) throws StageProcessingException {
             count++;
             value = e;
             return action;
         }
 
         /** Constructor. */
-        public CountingCapturingValidator(final Action a) {
+        public CountingCapturingValidator(final @Nonnull Action a) {
             action = a;
         }
     }

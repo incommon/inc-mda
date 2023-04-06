@@ -54,7 +54,7 @@ public class AcceptStringValueValidator extends BaseValidator implements Validat
     }
 
     @Override
-    public Action validate(@Nonnull final String e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
+    public @Nonnull Action validate(@Nonnull final String e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
         if (e.equals(value)) {
             return Action.DONE;
         } else {

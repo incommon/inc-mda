@@ -35,7 +35,7 @@ public class AsDomainNameStringValidator extends BaseAsValidator<String, Interne
     implements Validator<String> {
 
     @Override
-    protected InternetDomainName convert(@Nonnull final String domain) throws IllegalArgumentException {
+    protected @Nonnull InternetDomainName convert(@Nonnull final String domain) throws IllegalArgumentException {
         return InternetDomainName.from(domain);
     }
 

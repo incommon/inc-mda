@@ -116,10 +116,10 @@ public abstract class BaseAsValidator<V, A> extends BaseValidator implements Val
      * @return a value of the new type
      * @throws IllegalArgumentException if a conversion can not be performed
      */
-    protected abstract A convert(@Nonnull final V from) throws IllegalArgumentException;
+    protected abstract @Nonnull A convert(@Nonnull final V from) throws IllegalArgumentException;
 
     @Override
-    public Action validate(@Nonnull final V t, @Nonnull final Item<?> item, @Nonnull final String stageId)
+    public @Nonnull Action validate(@Nonnull final V t, @Nonnull final Item<?> item, @Nonnull final String stageId)
             throws StageProcessingException {
         try {
             final A v = convert(t);

@@ -4,6 +4,8 @@ package uk.org.iay.incommon.mda.validate.string;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -11,8 +13,8 @@ import com.google.common.net.InternetDomainName;
 
 import net.shibboleth.metadata.ErrorStatus;
 import net.shibboleth.metadata.Item;
-import net.shibboleth.metadata.MockItem;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
+import net.shibboleth.metadata.testing.MockItem;
 import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
 import net.shibboleth.metadata.validate.Validator.Action;
@@ -21,16 +23,17 @@ public class AsDomainNameStringValidatorTest {
 
     private static class CountingValidator extends BaseValidator implements Validator<InternetDomainName> {
         public int count;
-        private final Action action;
+        private final @Nonnull Action action;
 
         @Override
-        public Action validate(InternetDomainName e, Item<?> item, String stageId) throws StageProcessingException {
+        public @Nonnull Action validate(@Nonnull InternetDomainName e, @Nonnull Item<?> item, @Nonnull String stageId)
+                throws StageProcessingException {
             count++;
             return action;
         }
 
         /** Constructor. */
-        public CountingValidator(final Action a) {
+        public CountingValidator(final @Nonnull Action a) {
             action = a;
         }
     }

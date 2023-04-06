@@ -33,7 +33,7 @@ import net.shibboleth.metadata.validate.Validator;
 public class RejectAllValidator<V> extends BaseValidator implements Validator<V> {
 
     @Override
-    public Action validate(@Nonnull final V e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
+    public @Nonnull Action validate(@Nonnull final V e, @Nonnull final Item<?> item, @Nonnull final String stageId) {
         addErrorMessage(e, item, stageId);
         return Action.DONE;
     }

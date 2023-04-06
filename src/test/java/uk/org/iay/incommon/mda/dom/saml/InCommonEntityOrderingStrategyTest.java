@@ -10,9 +10,9 @@ import org.w3c.dom.Element;
 
 import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.ItemId;
-import net.shibboleth.metadata.dom.BaseDOMTest;
 import net.shibboleth.metadata.dom.DOMElementItem;
 import net.shibboleth.metadata.dom.saml.mdrpi.RegistrationAuthority;
+import net.shibboleth.metadata.dom.testing.BaseDOMTest;
 
 public class InCommonEntityOrderingStrategyTest extends BaseDOMTest {
 

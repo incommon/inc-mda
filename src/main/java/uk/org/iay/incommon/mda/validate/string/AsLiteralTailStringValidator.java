@@ -84,7 +84,7 @@ public class AsLiteralTailStringValidator extends BaseAsValidator<String, String
     private final Pattern pattern = Pattern.compile(".*?\\\\.(([a-zA-Z0-9-]+\\\\.)+[a-zA-Z0-9-]+)\\$");
 
     @Override
-    protected String convert(@Nonnull final String regex) throws IllegalArgumentException {
+    protected @Nonnull String convert(@Nonnull final String regex) throws IllegalArgumentException {
         // Match against the regular expression
         final Matcher matcher = pattern.matcher(regex);
 

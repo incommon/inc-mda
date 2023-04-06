@@ -32,7 +32,7 @@ public class RejectDomainNameNotUnderPublicSuffixValidator extends BaseValidator
     implements Validator<InternetDomainName> {
 
     @Override
-    public Action validate(@Nonnull final InternetDomainName domain, @Nonnull final Item<?> item,
+    public @Nonnull Action validate(@Nonnull final InternetDomainName domain, @Nonnull final Item<?> item,
             @Nonnull final String stageId) {
         if (domain.isUnderPublicSuffix()) {
             return Action.CONTINUE;
