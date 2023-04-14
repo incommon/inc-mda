@@ -26,10 +26,10 @@ import net.shibboleth.metadata.dom.DOMTraversalContext;
 import net.shibboleth.metadata.dom.SimpleDOMTraversalContext;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
 import net.shibboleth.metadata.validate.Validator;
+import net.shibboleth.metadata.validate.ValidatorSequence;
 import net.shibboleth.shared.component.ComponentInitializationException;
 import net.shibboleth.shared.xml.AttributeSupport;
 import net.shibboleth.shared.xml.ElementSupport;
-import uk.org.iay.incommon.mda.validate.ValidatorSequence;
 
 /**
  * Stage to apply a collection of validators to Shibboleth <code>shibmd:Scope</code>

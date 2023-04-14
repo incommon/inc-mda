@@ -9,6 +9,7 @@
     http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <import resource="classpath:uk/org/iay/incommon/mda/beans.xml"/>
+    <import resource="classpath:net/shibboleth/metadata/beans.xml"/>
 
     <bean class="net.shibboleth.shared.spring.config.IdentifiableBeanPostProcessor"/>
 
@@ -16,9 +17,9 @@
         class="uk.org.iay.incommon.mda.dom.saml.shib.ScopeValidationStage">
         <property name="validators">
             <list>
-                <bean parent="inc.RejectStringRegexValidator"
+                <bean parent="mda.RejectStringRegexValidator"
                     p:regex="" p:message="scope element must not be empty"/>
-                <bean parent="inc.RejectStringRegexValidator"
+                <bean parent="mda.RejectStringRegexValidator"
                     p:regex=".*\s.*" p:message="scope '%s' includes white space"/>
                 <bean parent="inc.AsDomainNameStringValidator"
                     p:message="scope is not a valid domain name: %s">
@@ -36,13 +37,13 @@
         </property>
         <property name="regexpValidators">
             <list>
-                <bean parent="inc.RejectStringRegexValidator"
+                <bean parent="mda.RejectStringRegexValidator"
                     p:regex="" p:message="scope element must not be empty"/>
-                <bean parent="inc.RejectStringRegexValidator"
+                <bean parent="mda.RejectStringRegexValidator"
                     p:regex=".*\s.*" p:message="scope '%s' includes white space"/>
-                <bean parent="inc.RejectStringRegexValidator"
+                <bean parent="mda.RejectStringRegexValidator"
                     p:regex="[^^].*" p:message="regex scope '%s' does not start with an anchor ('^')"/>
-                <bean parent="inc.RejectStringRegexValidator"
+                <bean parent="mda.RejectStringRegexValidator"
                     p:regex=".*[^$]" p:message="regex scope '%s' does not end with an anchor ('$')"/>
                 <bean parent="inc.AsLiteralTailStringValidator"
                     p:message="regular expression '%s' does not end with a literal tail">

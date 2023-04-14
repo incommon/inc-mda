@@ -22,6 +22,7 @@ import net.shibboleth.metadata.Item;
 import net.shibboleth.metadata.pipeline.StageProcessingException;
 import net.shibboleth.metadata.validate.BaseValidator;
 import net.shibboleth.metadata.validate.Validator;
+import net.shibboleth.metadata.validate.ValidatorSequence;
 import net.shibboleth.shared.component.ComponentInitializationException;
 
 /**
