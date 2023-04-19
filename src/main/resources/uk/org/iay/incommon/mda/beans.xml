@@ -31,27 +31,4 @@
     <bean id="inc.InCommonEntityOrderingStrategy" abstract="true"
         class="uk.org.iay.incommon.mda.dom.saml.InCommonEntityOrderingStrategy"/>
 
-    <!--
-        Stage beans.
-    -->
-
-    <bean id="inc.ScopeValidationStage" abstract="true" parent="inc.stage_parent"
-        class="uk.org.iay.incommon.mda.dom.saml.shib.ScopeValidationStage"/>
-
-    <!--
-        Validator beans.
-    -->
-
-    <bean id="inc.AsDomainNameStringValidator" abstract="true" parent="inc.component_parent"
-        class="uk.org.iay.incommon.mda.validate.string.AsDomainNameStringValidator"/>
-
-    <bean id="inc.AsLiteralTailStringValidator" abstract="true" parent="inc.component_parent"
-        class="uk.org.iay.incommon.mda.validate.string.AsLiteralTailStringValidator"/>
-
-    <bean id="inc.RejectDomainNameNotUnderPublicSuffixValidator" abstract="true" parent="inc.component_parent"
-        class="uk.org.iay.incommon.mda.validate.net.RejectDomainNameNotUnderPublicSuffixValidator"/>
-
-    <bean id="inc.RejectDomainNamePublicSuffixValidator" abstract="true" parent="inc.component_parent"
-        class="uk.org.iay.incommon.mda.validate.net.RejectDomainNamePublicSuffixValidator"/>
-
 </beans>
