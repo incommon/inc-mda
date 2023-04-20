@@ -22,7 +22,6 @@
 
     <properties>
         <mda.version>0.10.0-SNAPSHOT</mda.version>
-        <ukf-mda.version>0.10.0-SNAPSHOT</ukf-mda.version>
         <shib-shared.version>9.0.0-SNAPSHOT</shib-shared.version>
         <checkstyle.version>7.6</checkstyle.version>
     </properties>
@@ -187,20 +186,6 @@
         <repository>
             <id>shib-snapshot</id>
             <url>https://build.shibboleth.net/nexus/content/repositories/snapshots</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-        </repository>
-        <repository>
-            <id>ukf-release</id>
-            <url>https://apps.iay.org.uk/nexus/content/repositories/ukf</url>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>ukf-snapshot</id>
-            <url>https://apps.iay.org.uk/nexus/content/repositories/ukf-snapshots</url>
             <releases>
                 <enabled>false</enabled>
             </releases>
