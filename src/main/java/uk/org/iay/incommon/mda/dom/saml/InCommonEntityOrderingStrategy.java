@@ -61,7 +61,7 @@ public class InCommonEntityOrderingStrategy<T> implements ItemOrderingStrategy<T
      *
      * @param <T> type of item to be handled
      */
-    private static class OrderableItem<T> implements Comparable<OrderableItem> {
+    private static class OrderableItem<T> implements Comparable<OrderableItem<T>> {
 
         /** The wrapped {@link Element} {@link Item}. */
         private final Item<T> item;
@@ -87,7 +87,7 @@ public class InCommonEntityOrderingStrategy<T> implements ItemOrderingStrategy<T
         }
 
         @Override
-        public int compareTo(@Nonnull final OrderableItem o) {
+        public int compareTo(final OrderableItem<T> o) {
             // compare registrar values
             final int c = registrar.compareTo(o.registrar);
             // done if unequal
@@ -118,7 +118,7 @@ public class InCommonEntityOrderingStrategy<T> implements ItemOrderingStrategy<T
     }
 
     @Override
-    public List<Item<T>> order(@Nonnull @NonnullElements final List<Item<T>> items) {
+    public @Nonnull List<Item<T>> order(@Nonnull @NonnullElements final List<Item<T>> items) {
 
         // Collect the results here
         final List<Item<T>> results = new ArrayList<>(items.size());
@@ -152,7 +152,7 @@ public class InCommonEntityOrderingStrategy<T> implements ItemOrderingStrategy<T
                     entityID = itemids.get(0).getId();
                 }
 
-                orderableList.add(new OrderableItem(item, registrar, entityID));
+                orderableList.add(new OrderableItem<T>(item, registrar, entityID));
             }
         } catch (final StageProcessingException e) {
             /*
@@ -173,7 +173,7 @@ public class InCommonEntityOrderingStrategy<T> implements ItemOrderingStrategy<T
         Collections.sort(orderableList);
 
         // Add the ordered results into the results collection
-        for (final OrderableItem result : orderableList) {
+        for (final var result : orderableList) {
             results.add(result.unwrap());
         }
 

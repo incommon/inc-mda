@@ -4,6 +4,8 @@ package uk.org.iay.incommon.mda.dom.saml;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.w3c.dom.Element;
@@ -20,7 +22,7 @@ public class InCommonEntityOrderingStrategyTest extends BaseDOMTest {
         super(InCommonEntityOrderingStrategy.class);
     }
 
-    private Item<Element> makeItem(String registrar, String entityID) throws Exception {
+    private Item<Element> makeItem(@Nonnull String registrar, @Nonnull String entityID) throws Exception {
         final Item<Element> item = new DOMElementItem(readXMLData("trivial.xml"));
         item.getItemMetadata().put(new ItemId(entityID));
         item.getItemMetadata().put(new RegistrationAuthority(registrar));
@@ -60,8 +62,8 @@ public class InCommonEntityOrderingStrategyTest extends BaseDOMTest {
         Assert.assertEquals(items.size(), 8);
 
         // Order the collection
-        final InCommonEntityOrderingStrategy strat = new InCommonEntityOrderingStrategy(registrar_d);
-        final List<Item<Element>>items2 = strat.order(items);
+        final var strat = new InCommonEntityOrderingStrategy<Element>(registrar_d);
+        final var items2 = strat.order(items);
 
         // Check that everything is in the right place afterwards
         Assert.assertEquals(items2.size(), items.size());
