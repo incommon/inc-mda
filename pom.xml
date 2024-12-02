@@ -210,11 +210,11 @@
     <distributionManagement>
         <repository>
             <id>iay-release</id>
-            <url>https://apps.iay.org.uk/nexus/content/repositories/releases</url>
+            <url>https://nexus2.cs.iay.org.uk/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
             <id>iay-snapshot</id>
-            <url>https://apps.iay.org.uk/nexus/content/repositories/snapshots</url>
+            <url>https://nexus2.cs.iay.org.uk/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
         <site>
             <id>iay-site</id>
